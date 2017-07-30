@@ -1,0 +1,37 @@
+@import '~weather-icons/css/weather-icons.min.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~font-awesome/css/font-awesome.min.css';
+
+
+/* bootstrap overrides */
+.panel {
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+
+.x8 {
+  font-size: 8rem;
+}
+
+.x5 {
+  font-size: 5rem;
+}
+
+.x2 {
+  font-size: 3rem;
+}
+
+.wi {
+  opacity: 0.7;
+}
+
+.wi-fw {
+  width: 0.8em;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.monospace {
+  font-family: monospace;
+}
