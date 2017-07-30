@@ -2,12 +2,20 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~font-awesome/css/font-awesome.min.css';
 
+$spacing: 20px;
 
-/* bootstrap overrides */
+// bootstrap overrides
 .panel {
   box-shadow: 0 2px 8px rgba(0,0,0,.1);
 }
 
+.table {
+  margin-bottom: 0px;
+}
+
+
+
+// helper classes
 .x8 {
   font-size: 8rem;
 }
@@ -20,13 +28,6 @@
   font-size: 3rem;
 }
 
-.wi {
-  opacity: 0.7;
-}
-
-.wi-fw {
-  width: 0.8em;
-}
 
 .nowrap {
   white-space: nowrap;
@@ -34,4 +35,23 @@
 
 .monospace {
   font-family: monospace;
+}
+
+.padded {
+  padding: $spacing;
+}
+
+
+// icons overrides
+.wi, .fa {
+  opacity: 0.7;
+  &-fw {
+    width: 0.8em;
+  }
+}
+
+.wi {
+  &.wi-smog, &.wi-smoke {
+    width: 1em;
+  }
 }
