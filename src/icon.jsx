@@ -5,7 +5,7 @@ export class Icon extends Component {
 
   getIconClass() {
     const iconType = this.props.type === 'fa' ? 'fa' : 'wi';
-    return `${iconType} ${iconType}-fw ${iconType}-${this.props.name}`;
+    return `${this.props.className} ${iconType} ${iconType}-fw ${iconType}-${this.props.name}`;
   }
 
   render() {

@@ -58,16 +58,16 @@ class App extends Component {
 
             <div className="row">
 
-              <div className="col-xs-4">
+              <div className="col-xs-12 col-sm-4">
                 <div className="panel panel-default">
                   <div className="panel-body x5">
-                      <Icon name="thermometer"/>
+                      <Icon name="thermometer" className="text-center"/>
                       25 &deg;C
                   </div>
                 </div>
               </div>
 
-              <div className="col-xs-4">
+              <div className="col-xs-12 col-sm-4">
                 <div className="panel panel-default">
                   <div className="panel-body x5">
                     <Icon name="question" type="fa"/>
@@ -76,7 +76,7 @@ class App extends Component {
                 </div>
               </div>
 
-              <div className="col-xs-4">
+              <div className="col-xs-12 col-sm-4">
                 <div className="panel panel-default">
                   <div className="panel-body x5">
                     <Icon name="smog"/>
@@ -91,15 +91,15 @@ class App extends Component {
             <div className="panel panel-default">
               <div className="row">
 
-                <div className="col-xs-4">
+                <div className="col-xs-12 col-sm-4">
                   <StatsTable/>
                 </div>
 
-                <div className="col-xs-4">
+                <div className="col-xs-12 col-sm-4">
                   <StatsTable/>
                 </div>
 
-                <div className="col-xs-4">
+                <div className="col-xs-12 col-sm-4">
                   <StatsTable/>
                 </div>
 
