@@ -1,0 +1,112 @@
+@import './common.style.scss';
+
+
+$loader-bg-color        : #fff;
+$loader-opacity         : 0.8;
+$loader-zindex          : 1010;
+
+$loader-color           : #888;
+$loader-secondary-color : rgba($loader-color, 0.2);
+
+$loader-animation-speed : 0.6s;
+// $loader-size            : 1.5em;
+$loader-thickness       : 0.15rem;
+
+
+.loader {
+
+    @mixin loader-size($size) {
+        margin : (-$size/2) 0 0 (-$size/2);
+        width  : $size;
+        height : $size;
+    }
+
+    @mixin stretched {
+        position : absolute;
+        top      : 0;
+        bottom   : 0;
+        left     : 0;
+        right    : 0;
+    }
+
+
+    display: block;
+    opacity: 0;
+    @include transition;
+
+    &.loader-active {
+
+        opacity: 1;
+
+        &:before {
+            @include stretched;
+
+            content    : '';
+            background : rgba($loader-bg-color, $loader-opacity);
+            z-index    : $loader-zindex;
+        }
+
+        &:after {
+
+            position : absolute;
+            content  : '';
+            top      : 50%;
+            left     : 50%;
+
+            visibility : visible;
+
+            @include loader-size($loader-size);
+
+            animation: loader-spin $loader-animation-speed cubic-bezier(0.29, -0.26, 0.51, 1.46);
+            animation-iteration-count: infinite;
+
+            border-radius: 1000rem;
+
+            border-color: $loader-color $loader-secondary-color;
+            border-style: solid;
+            border-width: $loader-thickness;
+
+            box-shadow : 0px 0px 0px 1px transparent;
+            z-index    : $loader-zindex + 1;
+        }
+
+        &.small {
+            font-size: 100% !important;
+            &:after {
+                @include loader-size(1.2em);
+            }
+        }
+
+        &.big {
+            &:after {
+                @include loader-size(2*$loader-size);
+            }
+        }
+    }
+
+
+    &.transparent {
+        &:before {
+            background : transparent;
+        }
+    }
+}
+
+
+@keyframes loader-spin {
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.loader-wrapper {
+    position: relative;
+    min-height: 10rem;
+    &-small {
+        min-height: calc(#{$loader-size} + #{2*$spacing});
+    }
+}

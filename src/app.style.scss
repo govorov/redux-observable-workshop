@@ -2,7 +2,8 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~font-awesome/css/font-awesome.min.css';
 
-$spacing: 20px;
+@import './common.style.scss';
+
 
 // bootstrap overrides
 .panel {
@@ -28,6 +29,18 @@ $spacing: 20px;
   font-size: 3rem;
 }
 
+.relative {
+  position: relative;
+}
+
+.corner {
+  position : absolute;
+  top      : 0;
+  right    : 0;
+  width    : $loader-size;
+  height   : $loader-size;
+  padding  : $spacing;
+}
 
 .nowrap {
   white-space: nowrap;
