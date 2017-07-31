@@ -4,30 +4,48 @@ import registerServiceWorker from './register-service-worker';
 
 import {
   createStore,
-  combineReducers
+  combineReducers,
+  applyMiddleware,
 } from 'redux';
 
 import { Provider } from 'react-redux';
 
+import {
+  combineEpics,
+  createEpicMiddleware,
+} from 'redux-observable';
+
 import './index.scss';
 import { App } from './app.component';
 
-import { temperatureReducer } from './reducers/temperature.reducer';
-import { windReducer } from './reducers/wind.reducer';
-import { humidityReducer } from './reducers/humidity.reducer';
+// [? 3] file structure ./type/domain vs ./domain/type(reducer,adapter,...)
+import { temperatureReducer } from './reducers/temperature';
+import { windReducer } from './reducers/wind';
+import { humidityReducer } from './reducers/humidity';
+
+import { temperatureFetch } from './epics/temperature';
+import { windSpeedFetch } from './epics/wind';
 
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
   temperature : temperatureReducer,
   wind        : windReducer,
   humidity    : humidityReducer,
   // total       :
 });
 
+const rootEpic = combineEpics(
+  temperatureFetch,
+  windSpeedFetch,
+);
 
+const epicsMiddleware = createEpicMiddleware(rootEpic);
+
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  rootReducer,
+  applyMiddleware(epicsMiddleware),
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 
