@@ -18,7 +18,6 @@ export const FETCH_FAILED = 'temperature.fetch.failed';
 
 
 export const temperatureReducer = (state = initialState,action) => {
-    console.log('reducer',action);
 
     switch (action.type) {
         // [? 1]
