@@ -35,7 +35,7 @@ import { fetchTemperature } from '../adapters/temperature';
 //         // WIP уточнить
 // };
 
-export const temperatureFetch = FetchEpic({
+export const temperatureFetchEpic = FetchEpic({
     triggerActionType : FETCH,
     successActionType : FETCH_DONE,
     failedActionType  : FETCH_FAILED,

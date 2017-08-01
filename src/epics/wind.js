@@ -12,7 +12,7 @@ import {
 import { fetchWindSpeed, fetchWindDirection } from '../adapters/wind';
 
 
-export const windSpeedFetch = FetchEpic({
+export const windSpeedFetchEpic = FetchEpic({
     triggerActionType : FETCH_SPEED,
     successActionType : FETCH_SPEED_DONE,
     failedActionType  : FETCH_SPEED_FAILED,
@@ -20,7 +20,7 @@ export const windSpeedFetch = FetchEpic({
 });
 
 
-export const windDirectionFetch = FetchEpic({
+export const windDirectionFetchEpic = FetchEpic({
     triggerActionType : FETCH_DIRECTION,
     successActionType : FETCH_DIRECTION_DONE,
     failedActionType  : FETCH_DIRECTION_FAILED,

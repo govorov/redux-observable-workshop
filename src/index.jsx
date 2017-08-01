@@ -1,19 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import registerServiceWorker from './register-service-worker';
 
 import {
   createStore,
-  combineReducers,
   applyMiddleware,
+  compose,
 } from 'redux';
 
 import { Provider } from 'react-redux';
+import { createEpicMiddleware } from 'redux-observable';
 
-import {
-  combineEpics,
-  createEpicMiddleware,
-} from 'redux-observable';
+import registerServiceWorker from './register-service-worker';
 
 import './index.scss';
 import { App } from './app.component';
@@ -21,42 +18,17 @@ import { Action } from './app.helpers';
 import { appConfig } from './app.config';
 
 import { SYNC } from './reducers/common';
-
-// [? 3] file structure ./type/domain vs ./domain/type(reducer,adapter,...)
-import { temperatureReducer } from './reducers/temperature';
-import { windReducer } from './reducers/wind';
-import { humidityReducer } from './reducers/humidity';
-
-import { temperatureFetch } from './epics/temperature';
-import { windSpeedFetch } from './epics/wind';
-import { windDirectionFetch } from './epics/wind';
-import { humidityFetch } from './epics/humidity';
-import { sync } from './epics/sync';
+import { rootReducer } from './reducers/root';
+import { rootEpic } from './epics/root';
 
 
-const rootReducer = combineReducers({
-  temperature : temperatureReducer,
-  wind        : windReducer,
-  humidity    : humidityReducer,
-  // total       :
-});
+// http://extension.remotedev.io/#usage
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const epicsMiddleware  = createEpicMiddleware(rootEpic);
 
-const rootEpic = combineEpics(
-  temperatureFetch,
-  windSpeedFetch,
-  windDirectionFetch,
-  humidityFetch,
-  sync,
-);
-
-const epicsMiddleware = createEpicMiddleware(rootEpic);
-
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
-  rootReducer,
+const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
   applyMiddleware(epicsMiddleware),
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+));
 
 
 // WIP - здесь?

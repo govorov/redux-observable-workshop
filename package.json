@@ -38,7 +38,6 @@
     "react-dom": "^15.6.1",
     "react-error-overlay": "^1.0.9",
     "react-redux": "^5.0.5",
-    "react-smoothie": "^0.2.1",
     "redux": "^3.7.2",
     "redux-devtools": "^3.4.0",
     "redux-observable": "^0.14.1",

@@ -4,14 +4,14 @@ import {
     FETCH,
     FETCH_DONE,
     FETCH_FAILED,
-} from '../reducers/humidity';
+} from '../reducers/precipitation';
 
-import { fetchHumidity } from '../adapters/humidity';
+import { fetchPrecipitation } from '../adapters/precipitation';
 
 
-export const humidityFetchEpic = FetchEpic({
+export const precipitationFetchEpic = FetchEpic({
     triggerActionType : FETCH,
     successActionType : FETCH_DONE,
     failedActionType  : FETCH_FAILED,
-    fetchFunction     : fetchHumidity,
+    fetchFunction     : fetchPrecipitation,
 });
