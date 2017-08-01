@@ -1,11 +1,4 @@
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/delay';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-
-import { Action } from '../app.helpers';
+import { FetchEpic } from './common';
 
 import {
     FETCH_SPEED,
@@ -16,20 +9,20 @@ import {
     FETCH_DIRECTION_FAILED,
 } from '../reducers/wind';
 
-import { fetchTemperature } from '../adapters/temperature';
+import { fetchWindSpeed, fetchWindDirection } from '../adapters/wind';
 
 
-export const windSpeedFetch = (action$) => {
-    return action$
-        .ofType(FETCH_SPEED)
-        .switchMap((action) => {
-            return fetchTemperature();
-        })
-        .map((response) => {
-            const value = response.result;
-            return Action(FETCH_SPEED_DONE,{ value });
-        })
-        .catch((error) => {
-            return Observable.of(Action(FETCH_SPEED_FAILED,{ error }));
-        });
-};
+export const windSpeedFetch = FetchEpic({
+    triggerActionType : FETCH_SPEED,
+    successActionType : FETCH_SPEED_DONE,
+    failedActionType  : FETCH_SPEED_FAILED,
+    fetchFunction     : fetchWindSpeed,
+});
+
+
+export const windDirectionFetch = FetchEpic({
+    triggerActionType : FETCH_DIRECTION,
+    successActionType : FETCH_DIRECTION_DONE,
+    failedActionType  : FETCH_DIRECTION_FAILED,
+    fetchFunction     : fetchWindDirection,
+});

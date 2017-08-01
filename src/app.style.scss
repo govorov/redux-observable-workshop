@@ -1,4 +1,5 @@
 @import '~weather-icons/css/weather-icons.min.css';
+@import '~weather-icons/css/weather-icons-wind.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~font-awesome/css/font-awesome.min.css';
 
@@ -55,16 +56,11 @@
 }
 
 
-// icons overrides
 .wi, .fa {
   opacity: 0.7;
-  &-fw {
-    width: 0.8em;
-  }
 }
 
-.wi {
-  &.wi-smog, &.wi-smoke {
-    width: 1em;
-  }
+
+.wind-direction-icon {
+  @include transition(4*$transition-duration);
 }

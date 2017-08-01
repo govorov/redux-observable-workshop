@@ -38,16 +38,19 @@ export const windReducer = (state = initialState,action) => {
 
 
 const fetchSpeedActionHandler = (state,action) => {
+    const { speed } = state;
     return {
         ...state,
-        loading: true,
+        speed: {
+            ...speed,
+            loading: true,
+        },
     };
 };
 
 
 const fetchSpeedDoneActionHandler = (state,action) => {
     const { value } = action.payload;
-    const { speed } = state;
     return {
         ...state,
         speed: {
@@ -66,6 +69,7 @@ const fetchSpeedFailedActionHandler = (state,action) => {
         ...state,
         speed: {
             ...speed,
+            loading: false,
             error,
         },
     };
@@ -73,15 +77,14 @@ const fetchSpeedFailedActionHandler = (state,action) => {
 
 
 const fetchDirectionActionHandler = (state,action) => {
-    return state;
-    // const { speed } = state;
-    // return {
-    //     ...state,
-    //     speed: {
-    //         ...speed
-    //         loading: true,
-    //     },
-    // };
+    const { direction } = state;
+    return {
+        ...state,
+        direction: {
+            ...direction,
+            loading: true,
+        },
+    };
 };
 
 
@@ -89,15 +92,25 @@ const fetchDirectionDoneActionHandler = (state,action) => {
     const { value } = action.payload;
     return {
         ...state,
-        value,
-        loading: false,
+        direction: {
+            value,
+            loading : false,
+            error   : null,
+        },
     };
 };
 
 
 const fetchDirectionFailedActionHandler = (state,action) => {
+    const { error }     = action.payload;
+    const { direction } = state;
     return {
         ...state,
+        direction: {
+            ...direction,
+            loading: false,
+            error,
+        },
     };
 };
 

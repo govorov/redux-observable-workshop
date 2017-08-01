@@ -1,3 +1,10 @@
+import {
+    commonFetchActionHandler,
+    commonFetchDoneActionHandler,
+    commonFetchFailedActionHandler,
+} from './common';
+
+
 const initialState = {
   loading : false,
   value   : null,
@@ -15,9 +22,9 @@ export const temperatureReducer = (state = initialState,action) => {
 
     switch (action.type) {
         // [? 1]
-        case FETCH        : return fetchActionHandler(state,action);
-        case FETCH_DONE   : return fetchDoneActionHandler(state,action);
-        case FETCH_FAILED : return fetchFailedActionHandler(state,action);
+        case FETCH        : return commonFetchActionHandler(state,action);
+        case FETCH_DONE   : return commonFetchDoneActionHandler(state,action);
+        case FETCH_FAILED : return commonFetchFailedActionHandler(state,action);
         default:
             return state;
     }
@@ -25,28 +32,29 @@ export const temperatureReducer = (state = initialState,action) => {
 };
 
 
-const fetchActionHandler = (state,action) => {
-    return  {
-        ...state,
-        loading : true,
-    };
-};
+// const fetchActionHandler = (state,action) => {
+//     return  {
+//         ...state,
+//         loading : true,
+//     };
+// };
 
 
-const fetchDoneActionHandler = (state,action) => {
-    const { value } = action.payload;
-    return {
-        ...state,
-        value,
-        loading: false,
-    };
-};
+// const fetchDoneActionHandler = (state,action) => {
+//     const { value } = action.payload;
+//     return {
+//         ...state,
+//         value,
+//         loading: false,
+//     };
+// };
 
 
-const fetchFailedActionHandler = (state,action) => {
-    const { error } = action.payload;
-    return {
-        ...state,
-        error,
-    };
-};
+// const fetchFailedActionHandler = (state,action) => {
+//     const { error } = action.payload;
+//     return {
+//         ...state,
+//         loading: false,
+//         error,
+//     };
+// };

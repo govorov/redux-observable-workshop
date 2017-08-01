@@ -27,31 +27,17 @@ class App extends Component {
 
 
   getWindDirectionIcon() {
-    return 'from-e';
-    // HERE
-    return ([
-      'n',
-      'nne',
-      'ne',
-      'ene',
-      'e',
-      'ese',
-      'se',
-      'sse',
-      's',
-      'ssw',
-      'sw',
-      'wsw',
-      'w',
-      'wnw',
-      'nw',
-      'nnw',
-    ])[Math.round(Math.random()*100)];
+    const direction = this.props.state.wind.direction.value;
+    if (direction == null) {
+      return 'na';
+    }
+    return `wind wi-from-${direction}`;
   }
 
 
   render() {
     return (
+
         <div className="App">
           <div className="navbar navbar-default">
             <div className="container">
@@ -109,7 +95,7 @@ class App extends Component {
                       <Loader active={this.isLoading('wind')} />
                     </div>
                     <div className="x5">
-                    <Icon name={this.getWindDirectionIcon()} type="wi"/>
+                    <Icon className="wind-direction-icon" name={this.getWindDirectionIcon()} type="wi"/>
                     {this.props.state.wind.speed.value || '--'} m/s
                   </div>
                   </div>
@@ -123,8 +109,8 @@ class App extends Component {
                       <Loader active={this.isLoading('humidity')} />
                     </div>
                     <div className="x5">
-                    <Icon name="smog"/>
-                    {this.props.state.humidity.value || '--'}%
+                    <Icon name="humidity"/>
+                    {this.props.state.humidity.value || '--'}
                   </div>
                   </div>
                 </div>

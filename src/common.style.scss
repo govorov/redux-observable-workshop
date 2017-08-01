@@ -1,6 +1,8 @@
-$spacing     : 20px;
-$loader-size : 1.5em;
+$spacing             : 20px;
+$loader-size         : 1.5em;
+$transition-duration : 0.2s;
 
-@mixin transition {
-  transition: 0.2s all;
+
+@mixin transition($duration: $transition-duration) {
+  transition: $duration all;
 }
