@@ -212,7 +212,7 @@ module.exports = {
           },
           {
             loader: 'sass-loader',
-          }
+          },
         ],
       },
       // ** STOP ** Are you adding a new loader?

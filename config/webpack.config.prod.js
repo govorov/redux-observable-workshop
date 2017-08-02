@@ -86,9 +86,9 @@ module.exports = {
     // https://github.com/facebookincubator/create-react-app/issues/290
     // `web` extension prefixes have been added for better support
     // for React Native Web.
-    extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
+    extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx', '.scss'],
     alias: {
-      
+
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -118,7 +118,7 @@ module.exports = {
           {
             options: {
               formatter: eslintFormatter,
-              
+
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -138,6 +138,7 @@ module.exports = {
           /\.html$/,
           /\.(js|jsx)$/,
           /\.css$/,
+          /\.scss$/,
           /\.json$/,
           /\.bmp$/,
           /\.gif$/,
@@ -165,7 +166,7 @@ module.exports = {
         include: paths.appSrc,
         loader: require.resolve('babel-loader'),
         options: {
-          
+
           compact: true,
         },
       },
@@ -182,7 +183,7 @@ module.exports = {
       // use the "style" loader inside the async code so CSS from them won't be
       // in the main CSS file.
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         loader: ExtractTextPlugin.extract(
           Object.assign(
             {
@@ -215,6 +216,9 @@ module.exports = {
                       }),
                     ],
                   },
+                },
+                {
+                  loader: 'sass-loader',
                 },
               ],
             },
