@@ -3,7 +3,7 @@ import {
     commonFetchActionHandler,
     commonFetchDoneActionHandler,
     commonFetchFailedActionHandler,
-} from './common';
+} from '../common/reducer';
 
 
 const initialState = {

@@ -1,12 +1,12 @@
-import { FetchEpic } from './common';
+import { FetchEpic } from '../common/epic-creators';
 
 import {
     FETCH,
     FETCH_DONE,
     FETCH_FAILED,
-} from '../reducers/precipitation';
+} from './reducer';
 
-import { fetchPrecipitation } from '../adapters/precipitation';
+import { fetchPrecipitation } from './adapter';
 
 
 export const precipitationFetchEpic = FetchEpic({

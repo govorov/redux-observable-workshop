@@ -1,22 +1,22 @@
-import { Action } from '../app.helpers';
+import { Action } from '../common/helpers';
 
 import {
     FETCH_DONE as FETCH_TEMPERATURE_DONE,
-} from '../reducers/temperature';
+} from '../temperature/reducer';
 
 import {
     FETCH_DONE as FETCH_HUMIDITY_DONE,
-} from '../reducers/humidity';
+} from '../humidity/reducer';
 
 import {
     FETCH_SPEED_DONE as FETCH_WIND_SPEED_DONE,
-} from '../reducers/wind';
+} from '../wind/reducer';
 
 import {
     FETCH_DONE as FETCH_PRECIPITATION_DONE,
-} from '../reducers/precipitation';
+} from '../precipitation/reducer';
 
-import { CALC_CONDITIONS } from '../reducers/conditions';
+import { CALC_CONDITIONS } from '../conditions/reducer';
 
 
 export const calcConditionsEpic = (action$,store) => {

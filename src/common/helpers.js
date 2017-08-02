@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
 
-import { appConfig } from './app.config';
+import { appConfig } from '../app.config';
 
 
 export const Action = (type,payload) => {

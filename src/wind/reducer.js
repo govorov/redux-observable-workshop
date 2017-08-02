@@ -1,4 +1,4 @@
-import { commonInitialState } from './common';
+import { commonInitialState } from '../common/reducer';
 
 
 const initialSubState = {

@@ -1,4 +1,4 @@
-import { FetchEpic } from './common';
+import { FetchEpic } from '../common/epic-creators';
 
 import {
     FETCH_SPEED,
@@ -7,9 +7,9 @@ import {
     FETCH_DIRECTION,
     FETCH_DIRECTION_DONE,
     FETCH_DIRECTION_FAILED,
-} from '../reducers/wind';
+} from './reducer';
 
-import { fetchWindSpeed, fetchWindDirection } from '../adapters/wind';
+import { fetchWindSpeed, fetchWindDirection } from './adapter';
 
 
 export const windSpeedFetchEpic = FetchEpic({

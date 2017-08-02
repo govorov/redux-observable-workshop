@@ -1,6 +1,3 @@
-export const SYNC = 'sync';
-
-
 export const commonInitialState = {
     loading : false,
     value   : null,

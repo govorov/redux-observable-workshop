@@ -1,38 +1,62 @@
-import { Subject } from 'rxjs';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/distinctUntilChanged';
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { Action } from './common/helpers';
+import { Icon } from './common/icon.component';
+import { ErrorIcon } from './common/error-icon.component';
+import { Loader } from './common/loader.component';
+import { StatsTable } from './common/stats-table.component';
 
-import { Icon } from './icon.component';
-import { ErrorIcon } from './error-icon.component';
-import { Loader } from './loader.component';
-import { StatsTable } from './stats-table.component';
+import {
+  SYNC_START,
+  SYNC_STOP,
+} from './sync/reducer';
 
 import './app.style.scss';
 
 
-
 class App extends Component {
 
-  stateUpdate$ = new Subject();
-  chartStreams = {};
+  componentDidMount() {
+    this.props.dispatch(Action(SYNC_START));
+  }
+
+
+  getState() {
+    return this.props.state;
+  }
+
+
+  getToggleSyncBtnIcon() {
+    return this.isSyncEnabled() ? 'pause' : 'play';
+  }
+
+
+  handleToggleSyncBtnClick() {
+    // [? *] alternative - SYNC_TOGGLE => epic => start/stop
+    const action  = this.isSyncEnabled() ? SYNC_STOP : SYNC_START;
+    this.props.dispatch(Action(action));
+  }
+
+
+  isSyncEnabled() {
+    return this.getState().sync.enabled;
+  }
+
 
   isLoading(type) {
     if (type !== 'wind') {
-      return this.props.state[type].loading;
+      return this.getState()[type].loading;
     }
     else {
-      const { wind } = this.props.state;
+      const { wind } = this.getState();
       return wind.speed.loading || wind.direction.loading;
     }
   }
 
 
   getConditionsIcon() {
-    const { conditions } = this.props.state;
+    const { conditions } = this.getState();
     const notPrefixedIcons = ['na','hot','meteor'];
     return notPrefixedIcons.includes(conditions) ? conditions : `day-${conditions}`;
   }
@@ -69,7 +93,7 @@ class App extends Component {
 
 
   getWindDirectionIcon() {
-    const direction = this.props.state.wind.direction.value;
+    const direction = this.getState().wind.direction.value;
     if (direction == null) {
       return 'na';
     }
@@ -78,130 +102,121 @@ class App extends Component {
 
 
   getStatsFor(type) {
-    return this.props.state.stats[type];
+    return this.getState().stats[type];
   }
 
 
   render() {
     return (
-
-        <div className="App">
-          <div className="navbar navbar-default">
-            <div className="container">
-
-              <div className="navbar-header">
-                <div className="navbar-brand">
-                  Weather monitor X9000
-                </div>
-              </div>
-
-              <div className="navbar-collapse collapse">
-                <ul className="nav navbar-nav navbar-right">
-                  <li>
-                    <a>
-                      <Icon type="fa" name="pause" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-            </div>
-          </div>
-
+      <div className="App">
+        <div className="navbar navbar-default">
           <div className="container">
 
-            <div className="panel panel-default">
-              <div className="panel-body">
-                <div className="x8 text-warning text-center">
-                  <Icon name={this.getConditionsIcon()} />
-                </div>
+            <div className="navbar-header">
+              <div className="navbar-brand">
+                Weather monitor X9000
               </div>
             </div>
 
-
-            <div className="row">
-
-              <div className="col-xs-12 col-sm-4">
-
-                <div className="panel panel-default">
-                  <div className="panel-body relative">
-
-                    <ErrorIcon flag={this.hasError('temperature')}/>
-
-                    <div className="corner">
-                      <Loader active={this.isLoading('temperature')} />
-                    </div>
-                    <div className="x5">
-                      <Icon name="thermometer" className="text-center"/>
-                      { this.getValue('temperature') } &deg;C
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <div className="col-xs-12 col-sm-4">
-
-                <div className="panel panel-default">
-                  <div className="panel-body relative">
-
-                    <ErrorIcon flag={this.hasError('wind')}/>
-
-                    <div className="corner">
-                      <Loader active={this.isLoading('wind')} />
-                    </div>
-                    <div className="x5">
-                    <Icon className="wind-direction-icon" name={this.getWindDirectionIcon()} type="wi"/>
-                    { this.getValue('wind.speed') } m/s
-                  </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <div className="col-xs-12 col-sm-4">
-
-                <div className="panel panel-default">
-                  <div className="panel-body relative">
-
-                    <ErrorIcon flag={this.hasError('humidity')}/>
-
-                    <div className="corner">
-                      <Loader active={this.isLoading('humidity')} />
-                    </div>
-                    <div className="x5">
-                    <Icon name="humidity"/>
-                    { this.getValue('humidity') }
-                  </div>
-                  </div>
-                </div>
-
-              </div>
-
+            <div className="navbar-collapse collapse">
+              <ul className="nav navbar-nav navbar-right">
+                <li>
+                  <a id="sync-toggle-btn" onClick={this.handleToggleSyncBtnClick.bind(this)}>
+                    <Icon type="fa" name={this.getToggleSyncBtnIcon()} />
+                  </a>
+                </li>
+              </ul>
             </div>
-
-
-            <div className="panel panel-default">
-              <div className="row">
-
-                <div className="col-xs-12 col-sm-4">
-                  <StatsTable values={this.getStatsFor('temperature')} />
-                </div>
-
-                <div className="col-xs-12 col-sm-4">
-                  <StatsTable values={this.getStatsFor('wind')} />
-                </div>
-
-                <div className="col-xs-12 col-sm-4">
-                  <StatsTable values={this.getStatsFor('humidity')} />
-                </div>
-
-              </div>
-            </div>
-
 
           </div>
         </div>
+
+        <div className="container">
+
+          <div className="panel panel-default">
+            <div className="panel-body">
+              <div className="conditions-icon text-warning text-center">
+                <Icon name={this.getConditionsIcon()} />
+              </div>
+            </div>
+          </div>
+
+
+          <div className="row">
+
+            <div className="col-xs-12 col-sm-4">
+
+              <div className="panel panel-default">
+                <div className="panel-body relative">
+
+                  <ErrorIcon flag={this.hasError('temperature')}/>
+
+                  <div className="corner">
+                    <Loader active={this.isLoading('temperature')} />
+                  </div>
+
+                  <div className="dashboard-value">
+                    <Icon name="thermometer" className="text-center"/>
+                    { this.getValue('temperature') } &deg;C
+                  </div>
+
+                  <StatsTable values={this.getStatsFor('temperature')} />
+
+                </div>
+              </div>
+
+            </div>
+
+            <div className="col-xs-12 col-sm-4">
+
+              <div className="panel panel-default">
+                <div className="panel-body relative">
+
+                  <ErrorIcon flag={this.hasError('wind')}/>
+
+                  <div className="corner">
+                    <Loader active={this.isLoading('wind')} />
+                  </div>
+
+                  <div className="dashboard-value">
+                    <Icon className="wind-direction-icon" name={this.getWindDirectionIcon()} type="wi"/>
+                    { this.getValue('wind.speed') } m/s
+                  </div>
+
+                  <StatsTable values={this.getStatsFor('wind')} />
+
+                </div>
+              </div>
+
+            </div>
+
+            <div className="col-xs-12 col-sm-4">
+
+              <div className="panel panel-default">
+                <div className="panel-body relative">
+
+                  <ErrorIcon flag={this.hasError('humidity')}/>
+
+                  <div className="corner">
+                    <Loader active={this.isLoading('humidity')} />
+                  </div>
+
+                  <div className="dashboard-value">
+                    <Icon name="humidity"/>
+                    { this.getValue('humidity') }
+                  </div>
+
+                  <StatsTable values={this.getStatsFor('humidity')} />
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
     );
   }
 };

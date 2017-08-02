@@ -1,21 +1,21 @@
 import 'rxjs/add/operator/bufferCount';
 import 'rxjs/add/operator/map';
 
-import { Action } from '../app.helpers';
+import { Action } from '../common/helpers';
 
 import {
     FETCH_DONE as FETCH_TEMPERATURE_DONE,
-} from '../reducers/temperature';
+} from '../temperature/reducer';
 
 import {
     FETCH_SPEED_DONE as FETCH_WIND_DONE
-} from '../reducers/wind';
+} from '../wind/reducer';
 
 import {
     FETCH_DONE as FETCH_HUMIDITY_DONE
-} from '../reducers/humidity';
+} from '../humidity/reducer';
 
-import { SET_STATS } from '../reducers/stats';
+import { SET_STATS } from '../stats/reducer';
 import { appConfig } from '../app.config';
 
 

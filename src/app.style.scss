@@ -3,7 +3,8 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~font-awesome/css/font-awesome.min.css';
 
-@import './common.style.scss';
+@import './common/variables.scss';
+@import './common/mixins.scss';
 
 
 // bootstrap overrides
@@ -16,23 +17,20 @@
 }
 
 
-
-// helper classes
-.x8 {
+.conditions-icon {
   font-size: 8rem;
 }
 
-.x5 {
+
+.dashboard-value {
   font-size: 5rem;
 }
 
-.x2 {
-  font-size: 3rem;
-}
 
 .relative {
   position: relative;
 }
+
 
 .corner {
   position : absolute;
@@ -43,18 +41,6 @@
   padding  : $spacing;
 }
 
-.nowrap {
-  white-space: nowrap;
-}
-
-.monospace {
-  font-family: monospace;
-}
-
-.padded {
-  padding: $spacing;
-}
-
 
 .shrink {
   width: 1px;
@@ -63,6 +49,15 @@
 
 .wi, .fa {
   opacity: 0.7;
+}
+
+
+#sync-toggle-btn {
+  cursor: pointer;
+  @include transition;
+  &:hover {
+    background-color: #ddd;
+  }
 }
 
 

@@ -1,12 +1,12 @@
-import { FetchEpic } from './common';
+import { FetchEpic } from '../common/epic-creators';
 
 import {
     FETCH,
     FETCH_DONE,
     FETCH_FAILED,
-} from '../reducers/humidity';
+} from './reducer';
 
-import { fetchHumidity } from '../adapters/humidity';
+import { fetchHumidity } from './adapter';
 
 
 export const humidityFetchEpic = FetchEpic({

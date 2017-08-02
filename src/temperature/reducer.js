@@ -3,30 +3,30 @@ import {
     commonFetchActionHandler,
     commonFetchDoneActionHandler,
     commonFetchFailedActionHandler,
-} from './common';
+} from '../common/reducer';
 
 
 const initialState = {
-    ...commonInitialState,
-    // value   : null,
-    // loading : false,
-    // error   : null,
+  ...commonInitialState,
+  // loading : false,
+  // value   : null,
+  // error   : null,
+  // tick    : 0,
 };
 
 
-export const FETCH        = 'humidity.fetch';
-export const FETCH_DONE   = 'humidity.fetch.done';
-export const FETCH_FAILED = 'humidity.fetch.failed';
+export const FETCH        = 'temperature.fetch';
+export const FETCH_DONE   = 'temperature.fetch.done';
+export const FETCH_FAILED = 'temperature.fetch.failed';
 
 
-export const humidityReducer = (state = initialState,action) => {
+export const temperatureReducer = (state = initialState,action) => {
 
     switch (action.type) {
         // [? 1]
         case FETCH        : return commonFetchActionHandler(state,action);
-        case FETCH_DONE   : console.log('FD',action.payload.value);return commonFetchDoneActionHandler(state,action);
+        case FETCH_DONE   : return commonFetchDoneActionHandler(state,action);
         case FETCH_FAILED : return commonFetchFailedActionHandler(state,action);
-        // [? *] break!!
         default:
             return state;
     }

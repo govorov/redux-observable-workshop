@@ -1,4 +1,4 @@
-import { request } from '../app.helpers';
+import { request } from '../common/helpers';
 
 
 export const fetchTemperature = () => {

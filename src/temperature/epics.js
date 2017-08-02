@@ -6,15 +6,15 @@
 // import 'rxjs/add/operator/catch';
 
 // import { Action } from '../app.helpers';
-import { FetchEpic } from './common';
+import { FetchEpic } from '../common/epic-creators';
 
 import {
     FETCH,
     FETCH_DONE,
     FETCH_FAILED,
-} from '../reducers/temperature';
+} from './reducer';
 
-import { fetchTemperature } from '../adapters/temperature';
+import { fetchTemperature } from './adapter';
 
 
 // [? 4] => refactor -> epicFactory
