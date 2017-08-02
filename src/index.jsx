@@ -31,7 +31,6 @@ const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
 ));
 
 
-// WIP - здесь?
 setInterval(() => {
   store.dispatch(Action(SYNC));
 },appConfig.syncTick);

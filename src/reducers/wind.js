@@ -1,13 +1,17 @@
+import { commonInitialState } from './common';
+
+
+const initialSubState = {
+    ...commonInitialState
+};
+
+
 const initialState = {
     direction : {
-        value   : null,
-        loading : false,
-        error   : null,
+        ...initialSubState,
     },
     speed : {
-        value   : null,
-        loading : false,
-        error   : null,
+        ...initialSubState,
     },
 };
 
@@ -51,12 +55,14 @@ const fetchSpeedActionHandler = (state,action) => {
 
 const fetchSpeedDoneActionHandler = (state,action) => {
     const { value } = action.payload;
+    const { tick }  = state.speed;
+
     return {
         ...state,
         speed: {
+            ...commonInitialState,
             value,
-            loading : false,
-            error   : null,
+            tick: tick + 1,
         },
     };
 };
@@ -90,12 +96,13 @@ const fetchDirectionActionHandler = (state,action) => {
 
 const fetchDirectionDoneActionHandler = (state,action) => {
     const { value } = action.payload;
+    const { tick }  = state.direction;
     return {
         ...state,
         direction: {
+            ...commonInitialState,
             value,
-            loading : false,
-            error   : null,
+            tick: tick + 1,
         },
     };
 };

@@ -26,7 +26,7 @@ export const syncEpic = (action$) => {
             const actions = actionTypes.map(type => Action(type));
             return Observable.from(actions);
             // WIP takeUntil
-        })
+        });
 
 };
 

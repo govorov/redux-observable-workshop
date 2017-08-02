@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 
 
 export class StatsTable extends Component {
+
+  getValue(period,type) {
+    const value = this.props.values[period][type];
+    return value == null ? '--' : value;
+  }
+
+
   render() {
     return (
       <div className="padded">
@@ -9,7 +16,7 @@ export class StatsTable extends Component {
 
           <thead>
             <tr>
-              <th>
+              <th className="shrink">
               </th>
               <th>
                 Min
@@ -29,10 +36,13 @@ export class StatsTable extends Component {
                 1d
               </td>
               <td>
+                { this.getValue('daily','min') }
               </td>
               <td>
+                { this.getValue('daily','max') }
               </td>
               <td>
+                { this.getValue('daily','avg') }
               </td>
             </tr>
 
@@ -41,10 +51,13 @@ export class StatsTable extends Component {
                 7d
               </td>
               <td>
+                { this.getValue('weekly','min') }
               </td>
               <td>
+                { this.getValue('weekly','max') }
               </td>
               <td>
+                { this.getValue('weekly','avg') }
               </td>
             </tr>
 
@@ -53,10 +66,13 @@ export class StatsTable extends Component {
                 Total
               </td>
               <td>
+                { this.getValue('total','min') }
               </td>
               <td>
+                { this.getValue('total','max') }
               </td>
               <td>
+                { this.getValue('total','avg') }
               </td>
             </tr>
           </tbody>

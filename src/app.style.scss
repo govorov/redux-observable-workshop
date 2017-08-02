@@ -56,24 +56,32 @@
 }
 
 
+.shrink {
+  width: 1px;
+}
+
+
 .wi, .fa {
   opacity: 0.7;
 }
 
 
 .wind-direction-icon {
-  @include transition(4*$transition-duration);
+  @include transition($transition-duration-long);
 }
 
-.chart-wrapper {
-  overflow      : hidden;
-  padding       : 0;
-  border-radius : 4px;
-  position      : relative;
-  height        : 100px;
 
-  canvas {
-    position: absolute;
-    right: 0;
+.error-icon {
+
+  position : absolute;
+  // [? !] use bootstrap variables in real apps!
+  top      : $bootstrap-spacing;
+  left     : $bootstrap-spacing;
+
+  @include transition;
+  opacity: 0;
+
+  &-active {
+    opacity: 1;
   }
 }

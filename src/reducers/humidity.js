@@ -1,4 +1,5 @@
 import {
+    commonInitialState,
     commonFetchActionHandler,
     commonFetchDoneActionHandler,
     commonFetchFailedActionHandler,
@@ -6,9 +7,10 @@ import {
 
 
 const initialState = {
-    value   : null,
-    loading : false,
-    error   : null,
+    ...commonInitialState,
+    // value   : null,
+    // loading : false,
+    // error   : null,
 };
 
 
@@ -22,8 +24,9 @@ export const humidityReducer = (state = initialState,action) => {
     switch (action.type) {
         // [? 1]
         case FETCH        : return commonFetchActionHandler(state,action);
-        case FETCH_DONE   : return commonFetchDoneActionHandler(state,action);
+        case FETCH_DONE   : console.log('FD',action.payload.value);return commonFetchDoneActionHandler(state,action);
         case FETCH_FAILED : return commonFetchFailedActionHandler(state,action);
+        // [? *] break!!
         default:
             return state;
     }

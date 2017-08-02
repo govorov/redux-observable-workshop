@@ -6,6 +6,8 @@ import { windReducer } from './wind';
 import { humidityReducer } from './humidity';
 import { precipitationReducer } from './precipitation';
 import { conditionsReducer } from './conditions';
+import { statsReducer } from './stats';
+
 
 export const rootReducer = combineReducers({
   temperature   : temperatureReducer,
@@ -13,4 +15,5 @@ export const rootReducer = combineReducers({
   humidity      : humidityReducer,
   conditions    : conditionsReducer,
   precipitation : precipitationReducer,
+  stats         : statsReducer,
 });

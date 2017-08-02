@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 
 import { Icon } from './icon.component';
+import { ErrorIcon } from './error-icon.component';
 import { Loader } from './loader.component';
 import { StatsTable } from './stats-table.component';
 
@@ -37,12 +38,47 @@ class App extends Component {
   }
 
 
+  getValue(type) {
+    const { state } = this.props;
+    const pathSegments = type.split('.');
+
+    let value;
+
+    if (pathSegments[0] === 'wind') {
+      value = state.wind[pathSegments[1]].value;
+    }
+    else {
+      value = state[pathSegments[0]].value;
+    }
+
+    return value == null ? '--' : value;
+  }
+
+
+  hasError(type) {
+    // this.hasError('temperature')
+    const { state } = this.props;
+    if (type === 'wind') {
+      const windState = state.wind;
+      return windState.speed.error != null || windState.direction.error != null;
+    }
+    else {
+      return state[type].error != null;
+    }
+  }
+
+
   getWindDirectionIcon() {
     const direction = this.props.state.wind.direction.value;
     if (direction == null) {
       return 'na';
     }
     return `wind wi-from-${direction}`;
+  }
+
+
+  getStatsFor(type) {
+    return this.props.state.stats[type];
   }
 
 
@@ -89,12 +125,15 @@ class App extends Component {
 
                 <div className="panel panel-default">
                   <div className="panel-body relative">
+
+                    <ErrorIcon flag={this.hasError('temperature')}/>
+
                     <div className="corner">
                       <Loader active={this.isLoading('temperature')} />
                     </div>
                     <div className="x5">
                       <Icon name="thermometer" className="text-center"/>
-                      {this.props.state.temperature.value || '--'} &deg;C
+                      { this.getValue('temperature') } &deg;C
                     </div>
                   </div>
                 </div>
@@ -105,12 +144,15 @@ class App extends Component {
 
                 <div className="panel panel-default">
                   <div className="panel-body relative">
+
+                    <ErrorIcon flag={this.hasError('wind')}/>
+
                     <div className="corner">
                       <Loader active={this.isLoading('wind')} />
                     </div>
                     <div className="x5">
                     <Icon className="wind-direction-icon" name={this.getWindDirectionIcon()} type="wi"/>
-                    {this.props.state.wind.speed.value || '--'} m/s
+                    { this.getValue('wind.speed') } m/s
                   </div>
                   </div>
                 </div>
@@ -121,12 +163,15 @@ class App extends Component {
 
                 <div className="panel panel-default">
                   <div className="panel-body relative">
+
+                    <ErrorIcon flag={this.hasError('humidity')}/>
+
                     <div className="corner">
                       <Loader active={this.isLoading('humidity')} />
                     </div>
                     <div className="x5">
                     <Icon name="humidity"/>
-                    {this.props.state.humidity.value || '--'}
+                    { this.getValue('humidity') }
                   </div>
                   </div>
                 </div>
@@ -140,15 +185,15 @@ class App extends Component {
               <div className="row">
 
                 <div className="col-xs-12 col-sm-4">
-                  <StatsTable/>
+                  <StatsTable values={this.getStatsFor('temperature')} />
                 </div>
 
                 <div className="col-xs-12 col-sm-4">
-                  <StatsTable/>
+                  <StatsTable values={this.getStatsFor('wind')} />
                 </div>
 
                 <div className="col-xs-12 col-sm-4">
-                  <StatsTable/>
+                  <StatsTable values={this.getStatsFor('humidity')} />
                 </div>
 
               </div>

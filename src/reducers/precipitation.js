@@ -1,4 +1,5 @@
 import {
+    commonInitialState,
     commonFetchActionHandler,
     commonFetchDoneActionHandler,
     commonFetchFailedActionHandler,
@@ -6,9 +7,11 @@ import {
 
 
 const initialState = {
-  loading : false,
-  value   : null,
-  error   : null,
+  ...commonInitialState,
+  // loading : false,
+  // value   : null,
+  // error   : null,
+  // tick    : 0,
 };
 
 

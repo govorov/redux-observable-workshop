@@ -1,3 +1,5 @@
+import { Action } from '../app.helpers';
+
 import {
     FETCH_DONE as FETCH_TEMPERATURE_DONE,
 } from '../reducers/temperature';
@@ -15,8 +17,6 @@ import {
 } from '../reducers/precipitation';
 
 import { CALC_CONDITIONS } from '../reducers/conditions';
-
-import { Action } from '../app.helpers';
 
 
 export const calcConditionsEpic = (action$,store) => {
