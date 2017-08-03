@@ -11,11 +11,11 @@ import { syncReducer } from './sync/reducer';
 
 
 export const rootReducer = combineReducers({
-  temperature   : temperatureReducer,
-  wind          : windReducer,
-  humidity      : humidityReducer,
-  conditions    : conditionsReducer,
-  precipitation : precipitationReducer,
-  stats         : statsReducer,
-  sync          : syncReducer,
+    temperature   : temperatureReducer,
+    wind          : windReducer,
+    humidity      : humidityReducer,
+    conditions    : conditionsReducer,
+    precipitation : precipitationReducer,
+    stats         : statsReducer,
+    sync          : syncReducer,
 });

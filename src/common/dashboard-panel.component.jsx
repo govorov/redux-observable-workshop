@@ -19,26 +19,26 @@ export const DashboardPanel = ({
 
     return (
         <div className="dashboard-panel panel panel-default">
-          <div className="panel-body relative">
+            <div className="panel-body relative">
 
             <ErrorIcon flag={error}/>
 
             <div className="corner">
-              <Loader active={loading} />
+                <Loader active={loading} />
             </div>
 
             <div className="dashboard-value">
-              <Icon
-                name={icon}
-                className={`${iconClassName || ''} text-center`}
-                type={iconType}
-              />
-              { value }
+                <Icon
+                    name={icon}
+                    className={`${iconClassName || ''} text-center`}
+                    type={iconType}
+                />
+                { value }
             </div>
 
             <StatsTable values={statsValues} />
 
-          </div>
+            </div>
         </div>
-    );
+        );
 }

@@ -3,20 +3,19 @@
 
 
 .error-icon {
-  &.fa, &.wi {
-    position : absolute;
-    // [? !] use bootstrap variables in real apps!
-    top      : $bootstrap-spacing;
-    left     : $bootstrap-spacing;
-
-    @include transition;
-    opacity: 0;
-
-  }
-
-  &-active {
     &.fa, &.wi {
-      opacity: 1;
+        position : absolute;
+        // [? !] use bootstrap variables in real apps!
+        top      : $bootstrap-spacing;
+        left     : $bootstrap-spacing;
+
+        @include transition;
+        opacity: 0;
     }
-  }
+
+    &-active {
+        &.fa, &.wi {
+            opacity: 1;
+        }
+    }
 }

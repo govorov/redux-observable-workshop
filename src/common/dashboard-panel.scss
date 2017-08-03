@@ -2,19 +2,19 @@
 
 
 .dashboard-panel {
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
 
-  .dashboard-value {
-    font-size: 5rem;
-  }
+    .dashboard-value {
+        font-size: 5rem;
+    }
 
 
-  .corner {
-    position : absolute;
-    top      : 0;
-    right    : 0;
-    width    : $loader-size;
-    height   : $loader-size;
-    padding  : $spacing;
-  }
+    .corner {
+        position : absolute;
+        top      : 0;
+        right    : 0;
+        width    : $loader-size;
+        height   : $loader-size;
+        padding  : $spacing;
+    }
 }

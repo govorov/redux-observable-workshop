@@ -15,5 +15,5 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const epicsMiddleware  = createEpicMiddleware(rootEpic);
 
 export const appStore = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
-  applyMiddleware(epicsMiddleware),
+    applyMiddleware(epicsMiddleware),
 ));

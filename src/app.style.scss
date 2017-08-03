@@ -8,29 +8,29 @@
 
 
 .conditions-icon {
-  font-size: 8rem;
+    font-size: 8rem;
 }
 
 
 .relative {
-  position: relative;
+    position: relative;
 }
 
 
 .wi, .fa {
-  opacity: 0.7;
+    opacity: 0.7;
 }
 
 
 #sync-toggle-btn {
-  cursor: pointer;
-  @include transition;
-  &:hover {
-    background-color: #ddd;
-  }
+    cursor: pointer;
+    @include transition;
+    &:hover {
+        background-color: #ddd;
+    }
 }
 
 
 .wind-direction-icon {
-  @include transition($transition-duration-long);
+    @include transition($transition-duration-long);
 }
