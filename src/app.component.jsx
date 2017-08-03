@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 
 import { Action } from './common/helpers';
 import { Icon } from './common/icon.component';
-import { ErrorIcon } from './common/error-icon.component';
-import { Loader } from './common/loader.component';
-import { StatsTable } from './common/stats-table.component';
+import { DashboardPanel } from './common/dashboard-panel.component';
 
 import {
   SYNC_START,
@@ -146,70 +144,39 @@ class App extends Component {
 
             <div className="col-xs-12 col-sm-4">
 
-              <div className="panel panel-default">
-                <div className="panel-body relative">
-
-                  <ErrorIcon flag={this.hasError('temperature')}/>
-
-                  <div className="corner">
-                    <Loader active={this.isLoading('temperature')} />
-                  </div>
-
-                  <div className="dashboard-value">
-                    <Icon name="thermometer" className="text-center"/>
-                    { this.getValue('temperature') } &deg;C
-                  </div>
-
-                  <StatsTable values={this.getStatsFor('temperature')} />
-
-                </div>
-              </div>
+              <DashboardPanel
+                error={this.hasError('temperature')}
+                loading={this.isLoading('temperature')}
+                icon="thermometer"
+                value={`${this.getValue('temperature')} °C`}
+                statsValues={this.getStatsFor('temperature')}
+              />
 
             </div>
 
             <div className="col-xs-12 col-sm-4">
 
-              <div className="panel panel-default">
-                <div className="panel-body relative">
-
-                  <ErrorIcon flag={this.hasError('wind')}/>
-
-                  <div className="corner">
-                    <Loader active={this.isLoading('wind')} />
-                  </div>
-
-                  <div className="dashboard-value">
-                    <Icon className="wind-direction-icon" name={this.getWindDirectionIcon()} type="wi"/>
-                    { this.getValue('wind.speed') } m/s
-                  </div>
-
-                  <StatsTable values={this.getStatsFor('wind')} />
-
-                </div>
-              </div>
+              <DashboardPanel
+                error={this.hasError('wind')}
+                loading={this.isLoading('wind')}
+                icon={this.getWindDirectionIcon()}
+                iconClassName="wind-direction-icon"
+                iconType="wi"
+                value={`${this.getValue('wind.speed')} m/s`}
+                statsValues={this.getStatsFor('wind')}
+              />
 
             </div>
 
             <div className="col-xs-12 col-sm-4">
 
-              <div className="panel panel-default">
-                <div className="panel-body relative">
-
-                  <ErrorIcon flag={this.hasError('humidity')}/>
-
-                  <div className="corner">
-                    <Loader active={this.isLoading('humidity')} />
-                  </div>
-
-                  <div className="dashboard-value">
-                    <Icon name="humidity"/>
-                    { this.getValue('humidity') }
-                  </div>
-
-                  <StatsTable values={this.getStatsFor('humidity')} />
-
-                </div>
-              </div>
+              <DashboardPanel
+                error={this.hasError('humidity')}
+                loading={this.isLoading('humidity')}
+                icon="humidity"
+                value={this.getValue('humidity')}
+                statsValues={this.getStatsFor('humidity')}
+              />
 
             </div>
 

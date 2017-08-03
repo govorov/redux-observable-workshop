@@ -2,6 +2,7 @@
 import React from 'react';
 import { Icon } from './icon.component';
 
+import './error-icon.style';
 
 // export class ErrorIcon extends Component {
 
@@ -26,7 +27,11 @@ export const ErrorIcon = ({flag}) => {
     };
 
     return (
-        <Icon name="exclamation-circle" type="fa" className={`${getVisibilityClass(flag)} text-danger error-icon`} />
+        <Icon
+            name="exclamation-circle"
+            type="fa"
+            className={`${getVisibilityClass(flag)} text-danger error-icon`}
+        />
     );
 
 };

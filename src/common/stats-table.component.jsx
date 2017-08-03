@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './stats-table.style';
 
 
 export class StatsTable extends Component {
@@ -11,7 +12,7 @@ export class StatsTable extends Component {
 
   render() {
     return (
-      <table className="table table-bordered">
+      <table className="stats-table table table-bordered">
 
         <thead>
           <tr>

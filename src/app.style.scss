@@ -7,43 +7,13 @@
 @import './common/mixins.scss';
 
 
-// bootstrap overrides
-.panel {
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
-}
-
-.table {
-  margin-bottom: 0px;
-}
-
-
 .conditions-icon {
   font-size: 8rem;
 }
 
 
-.dashboard-value {
-  font-size: 5rem;
-}
-
-
 .relative {
   position: relative;
-}
-
-
-.corner {
-  position : absolute;
-  top      : 0;
-  right    : 0;
-  width    : $loader-size;
-  height   : $loader-size;
-  padding  : $spacing;
-}
-
-
-.shrink {
-  width: 1px;
 }
 
 
@@ -63,20 +33,4 @@
 
 .wind-direction-icon {
   @include transition($transition-duration-long);
-}
-
-
-.error-icon {
-
-  position : absolute;
-  // [? !] use bootstrap variables in real apps!
-  top      : $bootstrap-spacing;
-  left     : $bootstrap-spacing;
-
-  @include transition;
-  opacity: 0;
-
-  &-active {
-    opacity: 1;
-  }
 }
