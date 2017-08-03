@@ -1,0 +1,40 @@
+@import '~weather-icons/css/weather-icons.min.css';
+@import '~weather-icons/css/weather-icons-wind.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~font-awesome/css/font-awesome.min.css';
+
+@import './common/variables.scss';
+@import './common/mixins.scss';
+
+
+.panel {
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+
+.conditions-icon {
+    font-size: 8rem;
+}
+
+
+.relative {
+    position: relative;
+}
+
+
+.wi, .fa {
+    opacity: 0.7;
+}
+
+
+#sync-toggle-btn {
+    cursor: pointer;
+    @include transition;
+    &:hover {
+        background-color: #ddd;
+    }
+}
+
+
+.wind-direction-icon {
+    @include transition($transition-duration-long);
+}

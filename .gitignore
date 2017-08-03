@@ -3,12 +3,16 @@
 # dependencies
 client/node_modules
 server/node_modules
+stub/node_modules
+stub/node_modules
 
 # testing
 client/coverage
+stub/coverage
 
 # production
 client/build
+stub/build
 
 # misc
 .DS_Store
