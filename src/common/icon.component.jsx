@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
-export class Icon extends Component {
+const getIconClass = ({type,name,className}) => {
+    const iconType = type === 'fa' ? 'fa' : 'wi';
+    return `${className || ''} ${iconType} ${iconType}-fw ${iconType}-${name}`;
+}
 
-  getIconClass() {
-    const iconType = this.props.type === 'fa' ? 'fa' : 'wi';
-    return `${this.props.className || ''} ${iconType} ${iconType}-fw ${iconType}-${this.props.name}`;
-  }
 
-  render() {
-    return <i className={ this.getIconClass() }></i>
-  }
+export const Icon = ({type,name,className}) => {
+    return <i className={ getIconClass({type,name,className}) }></i>
 }

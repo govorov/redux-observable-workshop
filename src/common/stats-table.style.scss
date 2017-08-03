@@ -1,5 +1,8 @@
 .stats-table {
-  margin-bottom: 0px;
+
+  &.table {
+    margin-bottom: 0px;
+  }
 
   .shrink {
     width: 1px;

@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './loader.style.scss';
 
 
-export class Loader extends Component {
+const getClassName = (active) => {
+    return `loader ${active ? 'loader-active' : ''}`;
+}
 
-	getClassName() {
-		return `loader ${this.props.active ? 'loader-active' : ''}`;
-	}
 
-	render() {
-		return (
-			<div className={ this.getClassName() }>
-			</div>
-		);
-	}
-
+export const Loader = ({active}) => {
+    return <div className={ getClassName(active) }></div>
 }

@@ -19,7 +19,7 @@ import './error-icon.style';
 // }
 
 
-// React stateless functional component example
+// React stateless functional component
 export const ErrorIcon = ({flag}) => {
 
     const getVisibilityClass = (flag) => {
