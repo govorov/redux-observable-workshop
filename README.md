@@ -1,5 +1,7 @@
 # React + Redux + Redux-Observable application example
 
+Presentation slides are in slides.pdf file.
+
 # Installation
 
 * `git clone`
